@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Lottery.Core.ViewModels.LotteryEventViewModel>
+
+@{ 
+    var closedEvents = Model.Where(e => e.EventProgress.Equals("Closed"));
+}
+
+<table id="closed_events" class="table table-sm table-responsive-sm table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+            <th>@Html.DisplayNameFor(model => model.StartTime)</th>
+            <th>@Html.DisplayNameFor(model => model.TotalCards)</th>
+            <th>@Html.DisplayNameFor(model => model.AvailableCards)</th>
+            <th>@Html.DisplayNameFor(model => model.CardPrice)</th>
+            <th>@Html.DisplayNameFor(model => model.Award)</th>
+            <th>@Html.DisplayNameFor(model => model.WinnerCard)</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in closedEvents)
+        {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
+            <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+            <td>@Html.DisplayFor(modelItem => item.TotalCards)</td>
+            <td>@Html.DisplayFor(modelItem => item.AvailableCards)</td>
+            <td>@Html.DisplayFor(modelItem => item.CardPrice)</td>
+            <td>@Html.DisplayFor(modelItem => item.Award)</td>
+            <td>@Html.DisplayFor(modelItem => item.WinnerCard.Id)</td>
+            <td>
+                <button type="button" class="btn btn-sm"
+                        onclick="location.href='@Url.Action("Details", "Events", new { Id = item.Id })'">
+
+                    <i class="fa fa-info-circle darken-1"></i>
+                </button>
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+

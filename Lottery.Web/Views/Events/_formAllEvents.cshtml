@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Lottery.Core.ViewModels.LotteryEventViewModel>
+
+<table id="all_events" class="table table-sm table-responsive-sm table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+            <th>@Html.DisplayNameFor(model => model.StartTime)</th>
+            <th>@Html.DisplayNameFor(model => model.TotalCards)</th>
+            <th>@Html.DisplayNameFor(model => model.AvailableCards)</th>
+            <th>@Html.DisplayNameFor(model => model.CardPrice)</th>
+            <th>@Html.DisplayNameFor(model => model.Award)</th>
+            <th>@Html.DisplayNameFor(model => model.WinnerCard)</th>
+            <th>@Html.DisplayNameFor(model => model.EventProgress)</th>
+            <th>Edit</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var textColor = string.Empty;
+
+            if (item.EventProgress.Equals("Available"))
+            {
+                textColor = "limegreen";
+            }
+            else if (item.EventProgress.Equals("In progress"))
+            {
+                textColor = "rebeccapurple";
+            }
+            else
+            {
+                textColor = "red";
+            }
+
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
+            <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+            <td>@Html.DisplayFor(modelItem => item.TotalCards)</td>
+            <td>@Html.DisplayFor(modelItem => item.AvailableCards)</td>
+            <td>@Html.DisplayFor(modelItem => item.CardPrice)</td>
+            <td>@Html.DisplayFor(modelItem => item.Award)</td>
+            <td>@Html.DisplayFor(modelItem => item.WinnerCard.Id)</td>
+            <td class="font-weight-bold" style="color: @textColor">
+                @Html.DisplayFor(modelItem => item.EventProgress)
+            </td>
+            <td>
+                <button type="button" disabled="@item.EventProgress.Equals("Closed")" class="btn btn-sm"
+                        onclick="location.href='@Url.Action("Edit", "Events", new { Id = item.Id })'">
+
+                    <i class="fa fa-pencil darken-1"></i>
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-sm"
+                        onclick="location.href='@Url.Action("Details", "Events", new { Id = item.Id })'">
+
+                    <i class="fa fa-info-circle darken-1"></i>
+                </button>
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+

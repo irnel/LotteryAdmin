@@ -1,0 +1,39 @@
+﻿@model Lottery.Core.ViewModels.LotteryEventViewModel
+
+<table id="table_card" class="table table-sm table-responsive-sm table-hover mt-3">
+    <thead class="center-align">
+        <tr>
+            <th>Id</th>
+            <th class="text-center">IsAvailable</th>
+            @if (Model.WinnerCard == null)
+            {
+                <th class="text-center">Select Winner</th>
+            }
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var card in Model.Cards)
+        {
+            var availableTextColor = !card.IsAvailable ? "text-danger" : "text-success";
+
+        <tr>
+            <td scope="row">@Html.DisplayFor(modelItem => card.Id)</td>
+            <td class="text-center">
+                <p class="@availableTextColor">
+                    @Html.DisplayFor(modelItem => card.IsAvailable)
+                </p>
+            </td>
+            @if (Model.WinnerCard == null)
+            {
+                <td class="text-center">
+                    <button type="button" class="btn btn-sm">
+                        <i class="fa fa-star-o text-dark"></i>
+                    </button>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+

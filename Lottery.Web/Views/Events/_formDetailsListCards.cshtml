@@ -1,0 +1,22 @@
+﻿@model Lottery.Core.ViewModels.LotteryEventViewModel
+
+<table id="table_form" class="table table-sm table-hover">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th class="text-center">IsAvailable</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Cards)
+        {
+            var classAvailable = item.IsAvailable ? "text-success" : "text-danger";
+
+            <tr>
+                <th scope="row">@Html.DisplayFor(modelItem => item.Id)</th>
+                <td class="@classAvailable text-center">@Html.DisplayFor(modelItem => item.IsAvailable)</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,53 @@
+﻿@model Lottery.Core.ViewModels.LotteryEventViewModel
+
+<div class="row">
+    <div class="col d-flex">
+        <i class="fa fa-calendar mt-1 mr-1" aria-hidden="true"></i>
+        <strong class="mr-2">@Html.DisplayNameFor(model => model.StartDate)</strong>
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="col d-flex">
+        <i class="fa fa-clock-o mt-1 mr-1" aria-hidden="true"></i>
+        <strong class="mr-2">@Html.DisplayNameFor(model => model.StartTime)</strong>
+        @Html.DisplayFor(model => model.StartTime)
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col d-flex">
+        <i class="fa fa-credit-card mt-1 mr-1" aria-hidden="true"></i>
+        <strong class="mr-2">@Html.DisplayNameFor(model => model.TotalCards)</strong>
+        @Html.DisplayFor(model => model.TotalCards)
+    </div>
+
+    <div class="col d-flex">
+        <i class="fa fa-credit-card mt-1 mr-1" aria-hidden="true"></i>
+        <strong class="mr-2">@Html.DisplayNameFor(model => model.AvailableCards)</strong>
+        @Html.DisplayFor(model => model.AvailableCards)
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col d-flex">
+        <h5>
+            <strong class="mr-2">@Html.DisplayNameFor(model => model.CardPrice)</strong>
+        </h5>
+        <h6 class="card-text text-white">
+            <span class="badge badge-pill badge-primary shadow-sm mt-1 ml-1 pb-1 px-2">
+                @Html.DisplayFor(model => model.CardPrice)
+            </span>
+        </h6>
+    </div>
+
+    <div class="col d-flex">
+        <h5>
+            <strong class="mr-2">@Html.DisplayNameFor(model => model.Award)</strong>
+        </h5>
+        <h6 class="card-text text-white">
+            <span class="badge badge-pill badge-primary shadow-sm mt-1 ml-1 pb-1 px-2">
+                @Html.DisplayFor(model => model.Award)
+            </span>
+        </h6>
+    </div>
+</div>

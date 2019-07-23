@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Lottery.Core.ViewModels.LotteryEventViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="card shadow">
+    <div class="card-header">
+        <h3 class="card-title">Event List</h3>
+    </div>
+
+    <div class="card-body">
+        <!--Tab items -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link  active" href="#all" role="tab" data-toggle="tab" aria-selected="true">
+                    All
+                    <span class="badge badge-pill bg-primary text-white shadow-sm ml-1 pb-1 px-2">
+                        @Model.Count()
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#available" role="tab" data-toggle="tab">
+                    Available
+                    <span class="badge badge-pill bg-available text-white shadow-sm ml-1 pb-1 px-2">
+                        @ViewBag.EventsAvailable
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#in_progress" role="tab" data-toggle="tab">
+                    In progress
+                    <span class="badge badge-pill bg-in-progress text-white shadow-sm ml-1 pb-1 px-2">
+                        @ViewBag.EventsInProgress
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#closed" role="tab" data-toggle="tab">
+                    Closed
+                    <span class="badge badge-pill bg-closed text-white shadow-sm ml-1 pb-1 px-2">
+                        @ViewBag.EventsClosed
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content mt-lg-3">
+            <div role="tabpanel" class="tab-pane active" id="all">
+                @Html.Partial("_formAllEvents", Model)
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="available">
+                @Html.Partial("_formAvailableEvents", Model)
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="in_progress">
+                @Html.Partial("_formInProgressEvents", Model)
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="closed">
+                @Html.Partial("_formClosedEvents", Model)
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<button type="button" class="btn fixed-btn btn-primary btn-circle btn-lg element-shadow-sm"
+        onclick="location.href='@Url.Action("Create", "Events")'">
+
+    <i class="material-icons">add</i>
+</button>
+
+<!-- Notification Events -->
+@Html.Partial("_Notification")
+
+@section Scripts {
+    <script src="~/Scripts/component/events/view-index.js"></script>
+}
+

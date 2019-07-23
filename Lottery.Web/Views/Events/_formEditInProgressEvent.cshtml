@@ -1,0 +1,21 @@
+﻿@model Lottery.Core.ViewModels.LotteryEventViewModel
+
+<div class="card shadow mx-lg-5">
+    <div class="card-header pb-4">
+        <h3 class="card-title mr-lg-5">Edit Event</h3>
+
+        <span class="badge text-white shadow pb-1 px-2 @ViewBag.BackgroundProgress">
+            @Model.EventProgress
+        </span>
+    </div>
+
+    <div class="card-body">
+        @Html.Partial("_formLotteryDetails", Model)
+
+        <button id="btn_select" type="button" class="btn btn-primary px-4 mt-4">
+            <i class="fa fa-trophy prefix mr-2"></i>Select Winner
+        </button>
+
+    </div>
+</div>
+
